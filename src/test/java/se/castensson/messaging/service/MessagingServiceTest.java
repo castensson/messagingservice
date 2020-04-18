@@ -7,7 +7,7 @@ import se.castensson.messaging.api.response.MessageRespone;
 import se.castensson.messaging.api.response.StatusResponse;
 import se.castensson.messaging.exceptions.MessageBoxIndexException;
 import se.castensson.messaging.exceptions.MessageBoxMissingException;
-import se.castensson.messaging.repository.Message;
+import se.castensson.messaging.model.Message;
 
 import java.util.Comparator;
 import java.util.List;

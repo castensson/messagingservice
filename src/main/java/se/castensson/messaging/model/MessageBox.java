@@ -1,4 +1,4 @@
-package se.castensson.messaging.repository;
+package se.castensson.messaging.model;
 
 import lombok.Data;
 import lombok.NonNull;

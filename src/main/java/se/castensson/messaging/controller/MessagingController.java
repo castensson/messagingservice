@@ -34,7 +34,10 @@ public class MessagingController {
     }
 
     @PostMapping
-    @ApiOperation(value = "Receives status of existing message box", response = HttpStatus.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Messages received", response = MessageRespone.class)
+    })
+    @ApiOperation(value = "Post new messages", response = HttpStatus.class)
     public Callable<ResponseEntity<HttpStatus>> postMessage(@RequestBody @Valid MessageRequest messageRequest){
         registry.counter("messages_received").increment();
         return () -> {
@@ -51,7 +54,7 @@ public class MessagingController {
             @ApiResponse(code = 200, message = "Messages retrieved", response = MessageRespone.class),
             @ApiResponse(code = 404, message = "No message box found for user", response = HttpStatus.class)
     })
-    @ApiOperation(value = "Receives all unread messages, will be marked as read", response = HttpStatus.class)
+    @ApiOperation(value = "Retrieve all unread messages, will be marked as read", response = HttpStatus.class)
     public Callable<ResponseEntity<List<MessageRespone>>> getUnread(@PathVariable("userId") String userId){
         return () -> {
             try {
@@ -71,7 +74,7 @@ public class MessagingController {
             @ApiResponse(code = 404, message = "No message box found for user", response = HttpStatus.class),
             @ApiResponse(code = 400, message = "Invalid indexes", response = HttpStatus.class)
     })
-    @ApiOperation(value = "Receives messages based on indexes", response = HttpStatus.class)
+    @ApiOperation(value = "Retrieve messages based on indexes", response = HttpStatus.class)
     public Callable<ResponseEntity<List<MessageRespone>>> getMessages(
             @PathVariable("userId") String userId,
             @PathVariable("startIndex") Integer startIndex ,
@@ -106,12 +109,12 @@ public class MessagingController {
         };
     }
 
-    @ApiOperation(value = "Deletes messages from storage", response = HttpStatus.class)
+    @DeleteMapping
     @ApiResponses(value = {
             @ApiResponse(code = 204, message = "Successfully deleted messages"),
             @ApiResponse(code = 404, message = "No message box found for user")
     })
-    @DeleteMapping
+    @ApiOperation(value = "Deletes messages from storage", response = HttpStatus.class)
     public Callable<ResponseEntity<HttpStatus>> deleteMessages(@RequestBody @Valid DeleteRequest deleteRequest){
 
         return () -> {

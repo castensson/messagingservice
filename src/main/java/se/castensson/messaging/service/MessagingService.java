@@ -7,8 +7,8 @@ import se.castensson.messaging.api.response.MessageRespone;
 import se.castensson.messaging.api.response.StatusResponse;
 import se.castensson.messaging.exceptions.MessageBoxIndexException;
 import se.castensson.messaging.exceptions.MessageBoxMissingException;
-import se.castensson.messaging.repository.Message;
-import se.castensson.messaging.repository.MessageBox;
+import se.castensson.messaging.model.Message;
+import se.castensson.messaging.model.MessageBox;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -17,8 +17,8 @@ import org.apache.commons.lang3.RandomUtils;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
-import static se.castensson.messaging.repository.Message.Status.FETCHED;
-import static se.castensson.messaging.repository.Message.Status.UNFETCHED;
+import static se.castensson.messaging.model.Message.Status.FETCHED;
+import static se.castensson.messaging.model.Message.Status.UNFETCHED;
 
 @Service
 @Slf4j
