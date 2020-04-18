@@ -1,0 +1,12 @@
+{
+  "properties": [
+    {
+      "name": "async.threadpool.core-pool-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "name": "async.threadpool.max-pool-size",
+      "type": "java.lang.Integer"
+    }
+  ]
+}
