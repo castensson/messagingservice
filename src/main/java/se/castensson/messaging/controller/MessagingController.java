@@ -5,6 +5,7 @@ import io.swagger.annotations.*;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.castensson.messaging.api.request.DeleteRequest;
@@ -48,7 +49,8 @@ public class MessagingController {
 
     @RequestMapping(
             value = "unread/{userId}",
-            method = RequestMethod.GET
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
     )
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Messages retrieved", response = MessageRespone.class),
@@ -67,7 +69,8 @@ public class MessagingController {
 
     @RequestMapping(
             value = "messages/{userId}/{startIndex}/{stopIndex}",
-            method = RequestMethod.GET
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
     )
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Messages retrieved", response = MessageRespone.class),
@@ -92,7 +95,8 @@ public class MessagingController {
 
     @RequestMapping(
             value = "status/{userId}",
-            method = RequestMethod.GET
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
     )
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Status retrieved", response = StatusResponse.class),
@@ -112,7 +116,7 @@ public class MessagingController {
     @DeleteMapping
     @ApiResponses(value = {
             @ApiResponse(code = 204, message = "Successfully deleted messages"),
-            @ApiResponse(code = 404, message = "No message box found for user")
+            @ApiResponse(code = 404, message = "No message box found for user"),
     })
     @ApiOperation(value = "Deletes messages from storage", response = HttpStatus.class)
     public Callable<ResponseEntity<HttpStatus>> deleteMessages(@RequestBody @Valid DeleteRequest deleteRequest){
